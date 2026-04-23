@@ -1,0 +1,24 @@
+============================================================
+PASTE THESE RULES INTO YOUR FIRESTORE SECURITY RULES TAB
+============================================================
+
+Go to: Firebase Console → Firestore Database → Rules tab
+Delete everything there and paste this:
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /projects/{id} {
+      allow read: if true;
+      allow create: if request.resource.data.adminSecret == "admin_sk_d7x9mK2pQ8vL4wN6jF1bR3";
+      allow update: if request.resource.data.adminSecret == "admin_sk_d7x9mK2pQ8vL4wN6jF1bR3";
+      allow delete: if request.resource.data.adminSecret == "admin_sk_d7x9mK2pQ8vL4wN6jF1bR3";
+    }
+  }
+}
+
+Then click PUBLISH.
+
+NOTE: "admin_sk_d7x9mK2pQ8vL4wN6jF1bR3" matches NEXT_PUBLIC_ADMIN_SECRET in your .env.local
+If you change one, change both.
+============================================================
