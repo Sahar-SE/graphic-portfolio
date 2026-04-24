@@ -13,8 +13,10 @@ export async function fetchAllProjects(): Promise<Project[]> {
   try {
     const q    = query(collection(db, COL), orderBy('createdAt', 'desc'));
     const snap = await getDocs(q);
-    return snap.docs.map((d) => {
+    console.log(`[DEBUG] Fetched ${snap.docs.length} projects from Firestore`);
+    const projects = snap.docs.map((d) => {
       const data = d.data();
+      console.log(`[DEBUG] Project: ${data.title} (id: ${d.id}, category: ${data.category})`);
       return {
         id:           d.id,
         category:     data.category     ?? 'posters',
@@ -29,8 +31,9 @@ export async function fetchAllProjects(): Promise<Project[]> {
         thumbnailUrl: data.thumbnailUrl || undefined,
       } as Project;
     });
+    return projects;
   } catch (err) {
-    console.error('fetchAllProjects error:', err);
+    console.error('[ERROR] fetchAllProjects failed:', err);
     return [];
   }
 }
