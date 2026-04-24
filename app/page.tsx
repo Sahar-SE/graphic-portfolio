@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import SkillsSection from '@/components/SkillsSection';
 
 const marqueeItems = [
   'Graphic Design', '✦', 'Video Editing', '✦', 'Motion Graphics', '✦',
@@ -165,6 +166,9 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+
+      {/* ── SKILLS SECTION ── */}
+      <SkillsSection />
 
       {/* ── CATEGORIES ── */}
       <section className="max-w-7xl mx-auto px-6 py-28">
