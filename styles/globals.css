@@ -39,6 +39,9 @@ body {
 /* ---- Cursor ---- */
 * { cursor: none !important; }
 
+iframe,
+[data-modal] { cursor: auto !important; }
+
 #custom-cursor {
   position: fixed;
   top: 0; left: 0;
@@ -51,6 +54,10 @@ body {
   transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
   mix-blend-mode: difference;
 }
+
+/* Hide custom cursor inside modals */
+[data-modal] #custom-cursor,
+.modal-backdrop #custom-cursor { display: none; }
 
 #custom-cursor.hovering {
   width: 40px;
